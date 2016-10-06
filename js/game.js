@@ -34,8 +34,6 @@ function initGame () {
     var TILE_SIDE = 32;
 
     var TIME_LIMIT = 60; // Minutes
-    // var CLUE_BOX_IDS = [ 107, 119, 143, 150 ];
-    var CLUE_BOX_IDS = [ 319 ];
     var COLLISION_TILES = [ 40, 49, 52, 180, 189, 100, 109, 76, 139, 64, 106, 97, 172, 193, 133, 62, 120, 141, 142, 166,
                             163, 60, 144, 156, 157, 52, 195, 54, 55, 56, 69, 168, 205, 88, 108, 184, 68, 195, 48 ];
     var currentTime = TIME_LIMIT * 60; // Seconds
@@ -280,7 +278,6 @@ function initGame () {
         console.log(tileObj);
 
         // if the tile is a clue box tile
-        // if ($.inArray(tileObj.index, CLUE_BOX_IDS) >= 0) {
 
             // if player is on the right clue box, call correctClueFunc
             if (clues[currentClueIndex].cluebox.x >= playerTileX - 1 &&
