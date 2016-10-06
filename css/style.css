@@ -65,8 +65,20 @@ html, body {
 #clueDiv {
     left: 25%;
     width: 50%;
+    top: 25px;
 
     font-size: 21px;
+}
+#clueDivHeading {
+    position: absolute;
+    top: 0;
+    left: 25%;
+    right: 25%;
+    height: 25px;
+
+    font-size: 24px;
+
+    text-align: center;
 }
 
 #timeDiv {
@@ -119,3 +131,17 @@ html, body {
     width: 100%;
 }
 
+#winningBird {
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    margin-left: 0px;
+    width: 0px;
+
+    -webkit-transition: width 7s, margin-left 7s;
+    transition: width 7s, margin-left 7s;
+}
+#winningBird.large {
+    width: 300px;
+    margin-left: -150px;
+}

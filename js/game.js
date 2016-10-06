@@ -34,8 +34,9 @@ function initGame () {
     var TILE_SIDE = 32;
 
     var TIME_LIMIT = 60; // Minutes
-    var COLLISION_TILES = [ 40, 49, 52, 180, 189, 100, 109, 76, 139, 64, 106, 97, 172, 193, 133, 62, 120, 141, 142, 166, 96,
-                            67, 140, 153, 163, 60, 144, 156, 157, 52, 195, 54, 55, 56, 69, 168, 205, 88, 108, 184, 68, 195, 48 ];
+    var COLLISION_TILES = [ 40, 49, 52, 180, 189, 100, 109, 76, 139, 64, 106, 97, 172,
+                            193, 133, 62, 120, 141, 142, 166, 96, 114, 122, 125, 84,
+                            79, 67, 140, 153, 163, 60, 144, 156, 157, 52, 195, 54, 55, 56, 69, 168, 205, 88, 108, 184, 68, 195, 48 ];
     // var currentTime = TIME_LIMIT * 60; // Seconds
     var currentTime = 0;
     if (Cookies.get('emti')) {
@@ -134,6 +135,7 @@ function initGame () {
     var lastClueTime = '';
     if (Cookies.get('lct')) {
         lastClueTime = Cookies.get('lct');
+        $('#lastClueTimeDiv').text('Last clue at: ' + lastClueTime);
     }
 
     function create() {
@@ -303,7 +305,7 @@ function initGame () {
         console.log('Correct Clue');
 
         // Set currentTime to the time for last clue
-        lastClueTime = currentTime;
+        lastClueTime = $('#timeDiv').text();
         Cookies.set('lct', lastClueTime, { expires: 7 });
         $('#lastClueTimeDiv').text('Last clue at: ' + $('#timeDiv').text());
 
@@ -311,6 +313,12 @@ function initGame () {
         currentClueIndex++;
 
         $('#scoreDiv').text('Clues: ' + currentClueIndex + '/' + clues.length);
+
+        // Animate winningBird
+        $('#winningBird').addClass('large');
+        setTimeout(function(){
+            $('#winningBird').removeClass('large');
+        }, 7000);
 
         Cookies.set('ci', currentClueIndex, { expires: 7 });
 
@@ -402,16 +410,18 @@ var gameStarted = false;
 function showInitialScreen () {
     var keyString = '';
     $('body').on('keydown', function(event) {
-        switch (event.originalEvent.keyCode) {
+            switch (event.originalEvent.keyCode) {
             case 13:
-                if (!gameStarted && $('#instructionsBox').hasClass('show')) {
-                    gameStarted = true;
-                    $('#instructionsBox').removeClass('show top');
-                    $('#startScreen').addClass('hide');
-                    initGame();
-                    $('#header').addClass('show');
-                } else {
-                    $('#instructionsBox').addClass('show top');
+                if (!gameStarted) {
+                    if ($('#instructionsBox').hasClass('show')) {
+                        gameStarted = true;
+                        $('#instructionsBox').removeClass('show top');
+                        $('#startScreen').addClass('hide');
+                        initGame();
+                        $('#header').addClass('show');
+                    } else {
+                        $('#instructionsBox').addClass('show top');
+                    }
                 }
                 break;
         }
