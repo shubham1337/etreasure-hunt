@@ -398,7 +398,76 @@ function setHeaderButtons () {
     });
 }
 
+var gameStarted = false;
+function showInitialScreen () {
+    var keyString = '';
+    $('body').on('keydown', function(event) {
+        switch (event.originalEvent.keyCode) {
+            case 13:
+                if (!gameStarted && $('#instructionsBox').hasClass('show')) {
+                    gameStarted = true;
+                    $('#instructionsBox').removeClass('show top');
+                    $('#startScreen').addClass('hide');
+                    initGame();
+                    $('#header').addClass('show');
+                } else {
+                    $('#instructionsBox').addClass('show top');
+                }
+                break;
+        }
+
+        switch (event.originalEvent.key) {
+        case 'c':
+            if (keyString === '' ||
+                keyString === 'clear' ||
+                keyString === 'clearca') {
+                keyString += 'c';
+            }
+            break;
+        case 'l':
+            if (keyString === 'c') {
+                keyString += 'l';
+            }
+            break;
+        case 'e':
+            if (keyString === 'cl' ||
+                keyString === 'clearcach') {
+                keyString += 'e';
+            }
+            break;
+        case 'a':
+            if (keyString === 'cle' ||
+                keyString === 'clearc') {
+                keyString += 'a';
+            }
+            break;
+        case 'r':
+            if (keyString === 'clea') {
+                keyString += 'r';
+            }
+            break;
+        case 'h':
+            if (keyString === 'clearcac') {
+                keyString += 'h';
+            }
+            break;
+        default:
+            keyString = '';
+        }
+
+        if (keyString === 'clearcache') {
+            Cookies.remove('emti');
+            Cookies.remove('ci');
+            Cookies.remove('lct');
+            console.log('removed');
+        }
+
+
+    });
+}
+
 $(document).ready(function () {
+    showInitialScreen();
     setHeaderButtons();
-    initGame();
+    // initGame();
 });

@@ -19,6 +19,8 @@ html, body {
     height: 100px;
 
     z-index: 1;
+
+    display: none;
 }
 .trans-background {
     position: absolute;
@@ -104,8 +106,16 @@ html, body {
 .show {
     display: block !important;
 }
+.hide {
+    display: none !important;
+}
+.top {
+    top: 0 !important;
+}
 
 
-#startScreen {
+#startScreen,
+#startScreen img {
+    width: 100%;
 }
 
