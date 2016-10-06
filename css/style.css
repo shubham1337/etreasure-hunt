@@ -32,7 +32,7 @@ html, body {
     z-index: -1;
 }
 
-#scoreDiv, #clueDiv, #timeDiv {
+#lastClueTimeDiv, #scoreDiv, #clueDiv, #timeDiv {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -49,6 +49,15 @@ html, body {
 #scoreDiv {
     left: 0;
     width: 25%;
+    bottom: 25%;
+}
+#lastClueTimeDiv {
+    left: 0;
+    width: 25%;
+    top: 75%;
+    bottom: 0;
+
+    font-size: 21px;
 }
 
 #clueDiv {
@@ -63,5 +72,7 @@ html, body {
     width: 25%;
 }
 
+
 #startScreen {
 }
+

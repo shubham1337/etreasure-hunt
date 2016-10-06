@@ -34,9 +34,10 @@ function initGame () {
     var TILE_SIDE = 32;
 
     var TIME_LIMIT = 60; // Minutes
-    var COLLISION_TILES = [ 40, 49, 52, 180, 189, 100, 109, 76, 139, 64, 106, 97, 172, 193, 133, 62, 120, 141, 142, 166,
-                            163, 60, 144, 156, 157, 52, 195, 54, 55, 56, 69, 168, 205, 88, 108, 184, 68, 195, 48 ];
-    var currentTime = TIME_LIMIT * 60; // Seconds
+    var COLLISION_TILES = [ 40, 49, 52, 180, 189, 100, 109, 76, 139, 64, 106, 97, 172, 193, 133, 62, 120, 141, 142, 166, 96,
+                            67, 140, 153, 163, 60, 144, 156, 157, 52, 195, 54, 55, 56, 69, 168, 205, 88, 108, 184, 68, 195, 48 ];
+    // var currentTime = TIME_LIMIT * 60; // Seconds
+    var currentTime = 0;
     if (Cookies.get('emti')) {
         currentTime = parseInt(Cookies.get('emti'));
     }
@@ -129,6 +130,11 @@ function initGame () {
     // Set same values in DOM
     $('#scoreDiv').text('Clues: ' + currentClueIndex + '/' + clues.length);
     $('#clueDiv').text(clues[currentClueIndex].text);
+
+    var lastClueTime = '';
+    if (Cookies.get('lct')) {
+        lastClueTime = Cookies.get('lct');
+    }
 
     function create() {
         // Start game timer
@@ -296,6 +302,11 @@ function initGame () {
     function correctClueFunc () {
         console.log('Correct Clue');
 
+        // Set currentTime to the time for last clue
+        lastClueTime = currentTime;
+        Cookies.set('lct', lastClueTime, { expires: 7 });
+        $('#lastClueTimeDiv').text('Last clue at: ' + $('#timeDiv').text());
+
         // Start correct clue animation, increment clue score/index, change clue
         currentClueIndex++;
 
@@ -345,9 +356,9 @@ function initGame () {
                 hours = 0;
                 mins = Math.floor(currentTime / 60);
                 secs = Math.floor(currentTime % 60);
-            } else if (currentTime <= 0) {
-                $('#timeDiv').text('00:00:00');
-                gameEndFunc();
+            // } else if (currentTime <= 0) {
+            //     $('#timeDiv').text('00:00:00');
+            //     gameEndFunc();
             } else {
                 hours = 0;
                 mins = 0;
@@ -361,7 +372,8 @@ function initGame () {
 
             Cookies.set('emti', currentTime, { expires: 7 });
 
-            currentTime--;
+            // currentTime--;
+            currentTime++;
         }, 1000);
     }
 }
