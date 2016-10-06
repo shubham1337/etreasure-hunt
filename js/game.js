@@ -378,6 +378,27 @@ function initGame () {
     }
 }
 
+function setHeaderButtons () {
+    $('#viewMapButton').click(function () {
+        $('#minimap').toggleClass('show');
+        if ($(this).text() === 'View Map') {
+            $(this).text('Close Map');
+        } else if ($(this).text() === 'Close Map') {
+            $(this).text('View Map');
+        }
+    });
+
+    $('#viewInsButton').click(function () {
+        $('#instructionsBox').toggleClass('show');
+        if ($(this).text() === 'View Instructions') {
+            $(this).text('Close Instructions');
+        } else if ($(this).text() === 'Close Instructions') {
+            $(this).text('View Instructions');
+        }
+    });
+}
+
 $(document).ready(function () {
+    setHeaderButtons();
     initGame();
 });

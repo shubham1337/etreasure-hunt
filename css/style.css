@@ -18,7 +18,7 @@ html, body {
     right: 0;
     height: 100px;
 
-    z-index: 0;
+    z-index: 1;
 }
 .trans-background {
     position: absolute;
@@ -70,6 +70,39 @@ html, body {
 #timeDiv {
     right: 0;
     width: 25%;
+    height: 75%;
+}
+
+#viewInsButton,
+#viewMapButton {
+    position: absolute;
+    bottom: 0;
+
+    width: 12.5%;
+
+    font-size: 22px;
+
+    cursor: pointer;
+}
+#viewMapButton {
+    right: 12.5%;
+}
+#viewInsButton {
+    right: 0;
+}
+
+#instructionsBox, #minimap {
+    width: 100%;
+
+    position: absolute;
+    top: 100px;
+    display: none;
+}
+#instructionsBox img, #minimap img {
+    width: 100%;
+}
+.show {
+    display: block !important;
 }
 
 
