@@ -1,0 +1,67 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Times new roman', sans-serif;
+}
+
+#gameDiv {
+    width: 100%;
+    height: 100%;
+}
+
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+
+    z-index: 0;
+}
+.trans-background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    opacity: 0.5;
+    background: white;
+    z-index: -1;
+}
+
+#scoreDiv, #clueDiv, #timeDiv {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+    text-align: center;
+
+    z-index: 1;
+}
+
+#scoreDiv, #timeDiv {
+    font-size: 55px;
+}
+
+#scoreDiv {
+    left: 0;
+    width: 25%;
+}
+
+#clueDiv {
+    left: 25%;
+    width: 50%;
+
+    font-size: 21px;
+}
+
+#timeDiv {
+    right: 0;
+    width: 25%;
+}
+
+#startScreen {
+}
